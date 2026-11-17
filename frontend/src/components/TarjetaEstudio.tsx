@@ -45,6 +45,7 @@ export default function TarjetaEstudio({
   );
 }
 
+
 const styles = StyleSheet.create({
   tarjeta: {
     backgroundColor: '#FFFFFF',
@@ -52,11 +53,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginVertical: 8,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#DCE6DA',
   },
 
   tarjetaEnCurso: {
-    backgroundColor: '#F3E8FF',
+    backgroundColor: '#E5EFE3',
   },
 
   encabezado: {
@@ -70,10 +71,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     flex: 1,
+    color: '#244C3A',
   },
 
   etiqueta: {
-    backgroundColor: '#7E22CE',
+    backgroundColor: '#477A58',
     color: '#FFFFFF',
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -85,12 +87,12 @@ const styles = StyleSheet.create({
   institucion: {
     fontSize: 14,
     marginTop: 10,
-    color: '#374151',
+    color: '#536458',
   },
 
   periodo: {
     fontSize: 12,
     marginTop: 5,
-    color: '#6B7280',
+    color: '#89958A',
   },
 });

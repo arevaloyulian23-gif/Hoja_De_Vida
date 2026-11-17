@@ -5,21 +5,38 @@ import {
   ScrollView,
   StyleSheet,
   Alert,
+  Platform,
 } from 'react-native';
 
 import MiBoton from '../components/MiBoton';
+import { useRouter } from 'expo-router';
+
+function mostrarInformacion(titulo: string, mensaje: string) {
+  if (Platform.OS === 'web') {
+    window.alert(`${titulo}\n${mensaje}`);
+  } else {
+    Alert.alert(titulo, mensaje);
+  }
+}
+
 
 export default function Inicio() {
+  const router = useRouter();
+
+  function irA(pantalla: string) {
+    router.push(pantalla as any);
+  }
+
   return (
     <ScrollView style={styles.contenedor}>
-      
+
       <View style={styles.presentacion}>
         <Text style={styles.nombre}>
-          Tu nombre completo
+          Yulian Camilo Arevalo Castro
         </Text>
 
         <Text style={styles.titulacion}>
-          Aprendiz de Análisis y Desarrollo de Software
+          Técnico en programación de software
         </Text>
 
         <Text style={styles.perfil}>
@@ -39,7 +56,10 @@ export default function Inicio() {
           texto="Correo electrónico"
           icono="mail-outline"
           onPress={() =>
-            Alert.alert('Correo electrónico', 'tu-correo@ejemplo.com')
+            mostrarInformacion(
+              'Correo electrónico',
+              'arevalo.yulian23@gmail.com'
+            )
           }
         />
 
@@ -47,23 +67,7 @@ export default function Inicio() {
           texto="Teléfono"
           icono="call-outline"
           onPress={() =>
-            Alert.alert('Teléfono', 'Tu número de contacto')
-          }
-        />
-
-        <MiBoton
-          texto="LinkedIn"
-          icono="logo-linkedin"
-          onPress={() =>
-            Alert.alert('LinkedIn', 'Tu perfil de LinkedIn')
-          }
-        />
-
-        <MiBoton
-          texto="Facebook"
-          icono="logo-facebook"
-          onPress={() =>
-            Alert.alert('Facebook', 'Tu perfil de Facebook')
+            mostrarInformacion('Teléfono', '3214674002')
           }
         />
 
@@ -71,8 +75,35 @@ export default function Inicio() {
           texto="GitHub"
           icono="logo-github"
           onPress={() =>
-            Alert.alert('GitHub', 'Tu repositorio de proyectos')
+            mostrarInformacion(
+              'GitHub',
+              'https://github.com/arevaloyulian23-gif?tab=repositories'
+            )
           }
+        />
+      </View>
+
+      <View style={styles.seccion}>
+        <Text style={styles.tituloSeccion}>
+          Explorar mi hoja de vida
+        </Text>
+
+        <MiBoton
+          texto="Mis estudios"
+          icono="school-outline"
+          onPress={() => irA('/estudios')}
+        />
+
+        <MiBoton
+          texto="Mi experiencia"
+          icono="briefcase-outline"
+          onPress={() => irA('/experiencia')}
+        />
+
+        <MiBoton
+          texto="Mis hobbies"
+          icono="game-controller-outline"
+          onPress={() => irA('/hobbies')}
         />
       </View>
 
