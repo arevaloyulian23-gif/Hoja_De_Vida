@@ -8,12 +8,12 @@ export default function AppTabs() {
       screenOptions={{
         headerShown: false,
 
-        tabBarActiveTintColor: '#7E22CE',
-        tabBarInactiveTintColor: '#6B7280',
+        tabBarActiveTintColor: '#477A58',
+        tabBarInactiveTintColor: '#89958A',
 
+        // Ocultar la barra inferior
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
-          borderTopColor: '#E5E7EB',
+          display: 'none',
         },
       }}
     >
@@ -25,7 +25,7 @@ export default function AppTabs() {
             <Ionicons
               name="home-outline"
               size={size}
-              color={focused ? '#7E22CE' : '#6B7280'}
+              color={focused ? '#477A58' : '#89958A'}
             />
           ),
         }}
@@ -39,7 +39,7 @@ export default function AppTabs() {
             <Ionicons
               name="school-outline"
               size={size}
-              color={focused ? '#7E22CE' : '#6B7280'}
+              color={focused ? '#477A58' : '#89958A'}
             />
           ),
         }}
@@ -53,7 +53,7 @@ export default function AppTabs() {
             <Ionicons
               name="briefcase-outline"
               size={size}
-              color={focused ? '#7E22CE' : '#6B7280'}
+              color={focused ? '#477A58' : '#89958A'}
             />
           ),
         }}
@@ -67,7 +67,7 @@ export default function AppTabs() {
             <Ionicons
               name="game-controller-outline"
               size={size}
-              color={focused ? '#7E22CE' : '#6B7280'}
+              color={focused ? '#477A58' : '#89958A'}
             />
           ),
         }}

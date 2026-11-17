@@ -28,20 +28,21 @@ export default function MiBoton({
 }
 
 const styles = StyleSheet.create({
-  boton: {
-    backgroundColor: '#7E22CE',
-    padding: 12,
-    borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    marginVertical: 5,
-  },
+  
+    boton: {
+  backgroundColor: '#477A58',
+  padding: 12,
+  borderRadius: 10,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
+  marginVertical: 5,
+},
 
-  texto: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
+texto: {
+  color: '#FFFFFF',
+  fontSize: 14,
+  fontWeight: 'bold',
+},
 });
