@@ -1,0 +1,12 @@
+# Dependencias
+node_modules/
+
+# Expo
+.expo/
+
+# Variables privadas
+.env
+.env.*
+
+# Proyecto web anterior
+frontend-vite-respaldo/
