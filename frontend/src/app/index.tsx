@@ -4,32 +4,45 @@ import {
   Text,
   ScrollView,
   StyleSheet,
-  Alert,
-  Platform,
+  Image,
+  Modal,
+  Pressable,
 } from 'react-native';
 
 import MiBoton from '../components/MiBoton';
 import { useRouter } from 'expo-router';
-
-function mostrarInformacion(titulo: string, mensaje: string) {
-  if (Platform.OS === 'web') {
-    window.alert(`${titulo}\n${mensaje}`);
-  } else {
-    Alert.alert(titulo, mensaje);
-  }
-}
-
+import { useState } from 'react';
 
 export default function Inicio() {
   const router = useRouter();
 
+  // Estados de la ventana de contacto
+  const [contactoVisible, setContactoVisible] = useState(false);
+  const [tipoContacto, setTipoContacto] = useState('');
+
+  // Navegación
   function irA(pantalla: string) {
     router.push(pantalla as any);
+  }
+
+  // Mostrar información de contacto
+  function mostrarContacto(tipo: string) {
+    setTipoContacto(tipo);
+    setContactoVisible(true);
   }
 
   return (
     <ScrollView style={styles.contenedor}>
 
+      {/* Fotografía */}
+      <View style={styles.fotoContenedor}>
+        <Image
+          source={require('../../assets/images/profile.jpg')}
+          style={styles.foto}
+        />
+      </View>
+
+      {/* Presentación */}
       <View style={styles.presentacion}>
         <Text style={styles.nombre}>
           Yulian Camilo Arevalo Castro
@@ -47,6 +60,7 @@ export default function Inicio() {
         </Text>
       </View>
 
+      {/* Contacto */}
       <View style={styles.seccion}>
         <Text style={styles.tituloSeccion}>
           Información de contacto
@@ -55,34 +69,23 @@ export default function Inicio() {
         <MiBoton
           texto="Correo electrónico"
           icono="mail-outline"
-          onPress={() =>
-            mostrarInformacion(
-              'Correo electrónico',
-              'arevalo.yulian23@gmail.com'
-            )
-          }
+          onPress={() => mostrarContacto('correo')}
         />
 
         <MiBoton
           texto="Teléfono"
           icono="call-outline"
-          onPress={() =>
-            mostrarInformacion('Teléfono', '3214674002')
-          }
+          onPress={() => mostrarContacto('telefono')}
         />
 
         <MiBoton
           texto="GitHub"
           icono="logo-github"
-          onPress={() =>
-            mostrarInformacion(
-              'GitHub',
-              'https://github.com/arevaloyulian23-gif?tab=repositories'
-            )
-          }
+          onPress={() => mostrarContacto('github')}
         />
       </View>
 
+      {/* Navegación */}
       <View style={styles.seccion}>
         <Text style={styles.tituloSeccion}>
           Explorar mi hoja de vida
@@ -107,12 +110,89 @@ export default function Inicio() {
         />
       </View>
 
+      {/* Ventana emergente */}
+      <Modal
+        visible={contactoVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setContactoVisible(false)}
+      >
+        <View style={styles.fondoModal}>
+          <View style={styles.ventanaModal}>
+
+            <Text style={styles.tituloModal}>
+              Información de contacto
+            </Text>
+
+            {tipoContacto === 'correo' && (
+              <>
+                <Text style={styles.subtituloModal}>
+                  Correo electrónico
+                </Text>
+                <Text style={styles.datoModal}>
+                  arevalo.yulian23@gmail.com
+                </Text>
+              </>
+            )}
+
+            {tipoContacto === 'telefono' && (
+              <>
+                <Text style={styles.subtituloModal}>
+                  Teléfono
+                </Text>
+                <Text style={styles.datoModal}>
+                  3214674002
+                </Text>
+              </>
+            )}
+
+            {tipoContacto === 'github' && (
+              <>
+                <Text style={styles.subtituloModal}>
+                  GitHub
+                </Text>
+                <Text style={styles.datoModal}>
+                  github.com/arevaloyulian23-gif
+                </Text>
+              </>
+            )}
+
+            <Pressable
+              style={styles.botonCerrar}
+              onPress={() => setContactoVisible(false)}
+            >
+              <Text style={styles.textoCerrar}>
+                Cerrar
+              </Text>
+            </Pressable>
+
+          </View>
+        </View>
+      </Modal>
+
     </ScrollView>
   );
 }
 
-
 const styles = StyleSheet.create({
+  fotoContenedor: {
+    width: 130,
+    height: 130,
+    borderRadius: 65,
+    overflow: 'hidden',
+    alignSelf: 'center',
+    marginBottom: 20,
+    marginTop: 20,
+    borderWidth: 3,
+    borderColor: '#A8BFA5',
+  },
+
+  foto: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+
   contenedor: {
     flex: 1,
     backgroundColor: '#F2F5EF',
@@ -157,5 +237,56 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#244C3A',
     marginBottom: 12,
+  },
+
+  // Estilos de la ventana
+  fondoModal: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+
+  ventanaModal: {
+    width: '100%',
+    maxWidth: 380,
+    backgroundColor: '#FFFFFF',
+    padding: 24,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#DCE6DA',
+  },
+
+  tituloModal: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#244C3A',
+    marginBottom: 20,
+  },
+
+  subtituloModal: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#477A58',
+    marginBottom: 8,
+  },
+
+  datoModal: {
+    fontSize: 15,
+    color: '#536458',
+    marginBottom: 20,
+  },
+
+  botonCerrar: {
+    backgroundColor: '#477A58',
+    padding: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+
+  textoCerrar: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });

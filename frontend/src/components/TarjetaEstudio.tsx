@@ -5,6 +5,7 @@ interface TarjetaEstudioProps {
   titulo: string;
   institucion: string;
   periodo: string;
+  descripcion: string;
   enCurso: boolean;
 }
 
@@ -12,6 +13,7 @@ export default function TarjetaEstudio({
   titulo,
   institucion,
   periodo,
+  descripcion,
   enCurso
 }: TarjetaEstudioProps) {
 
@@ -41,16 +43,19 @@ export default function TarjetaEstudio({
         {periodo}
       </Text>
 
+      <Text style={styles.descripcion}>
+        {descripcion}
+      </Text>
+
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
   tarjeta: {
     backgroundColor: '#FFFFFF',
-    padding: 16,
-    borderRadius: 12,
+    padding: 18,
+    borderRadius: 14,
     marginVertical: 8,
     borderWidth: 1,
     borderColor: '#DCE6DA',
@@ -58,6 +63,7 @@ const styles = StyleSheet.create({
 
   tarjetaEnCurso: {
     backgroundColor: '#E5EFE3',
+    borderColor: '#A8BFA5',
   },
 
   encabezado: {
@@ -87,12 +93,20 @@ const styles = StyleSheet.create({
   institucion: {
     fontSize: 14,
     marginTop: 10,
-    color: '#536458',
+    color: '#477A58',
+    fontWeight: '600',
   },
 
   periodo: {
     fontSize: 12,
     marginTop: 5,
     color: '#89958A',
+  },
+
+  descripcion: {
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#536458',
+    marginTop: 12,
   },
 });

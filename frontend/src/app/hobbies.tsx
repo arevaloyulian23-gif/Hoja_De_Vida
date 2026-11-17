@@ -1,19 +1,42 @@
 
-import { Text, StyleSheet, ScrollView } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+} from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 import TarjetaHobby from '../components/TrajetaHobby';
 
 export default function Hobbies() {
+  const router = useRouter();
+
   return (
     <ScrollView style={styles.contenedor}>
+
+      {/* Botón para regresar a Inicio */}
+      <Pressable
+        style={styles.botonRegreso}
+        onPress={() => router.replace('/')}
+      >
+        <Ionicons name="arrow-back" size={18} color="#477A58" />
+        <Text style={styles.textoRegreso}>Inicio</Text>
+      </Pressable>
+
+      {/* Título */}
       <Text style={styles.titulo}>
         Mis pasatiempos e intereses
       </Text>
 
+      {/* Tarjetas de hobbies */}
       <TarjetaHobby
         titulo="Programación"
         descripcion="Me interesa aprender lenguajes de programación y desarrollar aplicaciones."
         detalle="Disfruto explorar tecnologías como JavaScript, Python y React Native, además de desarrollar proyectos personales."
+        imagen={require('../../assets/images/programacion.jpg')}
       />
 
       <TarjetaHobby
@@ -43,6 +66,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F2F5EF',
     padding: 20,
+  },
+
+  botonRegreso: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    backgroundColor: '#E5EFE3',
+    marginBottom: 25,
+    gap: 6,
+  },
+
+  textoRegreso: {
+    color: '#477A58',
+    fontSize: 14,
+    fontWeight: '600',
   },
 
   titulo: {
